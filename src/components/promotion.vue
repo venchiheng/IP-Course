@@ -2,7 +2,7 @@
     <div class="promotionContainer" :style="{backgroundColor: color}">
         <div class="tt">
             <p class="promotitle">{{ title }}</p>
-            <buttonComponent :backgroundColor="btnColor" :name="btnName"></buttonComponent>
+            <buttonComponent @click="shopNow" :backgroundColor="btnColor" :name="btnName"></buttonComponent>
         </div>
         <img :src="promoimage" alt="image promotion" class="promo-img">
     </div>
@@ -15,6 +15,11 @@ export default{
     props: ["color", "title", "promoimage", "btnColor","btnName"],
     components:{
     buttonComponent,
+    },
+    methods: {
+        shopNow(){
+            alert("Let's shop: " +this.title);
+        }
     }
 }
 </script>
