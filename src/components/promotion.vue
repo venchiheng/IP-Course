@@ -34,6 +34,7 @@ export default{
     display: flex;
 }
 .tt{
+    
     margin-left: 20px;
     width: 240px;
     margin-top: 50px;
