@@ -1,0 +1,49 @@
+<template>
+    <div class="cat" :style="{backgroundColor: color}">
+        <img :src="image" alt="Cat-Image" class="cat-img"/>
+        <h4 class="name"> {{ name }}</h4>
+        <p class="productCount"> {{ productCount }}</p>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "category",
+    props: ["image", "name", "productCount", "color"]
+}
+</script>
+
+<style>
+.cat {
+    margin-top: 20px;
+    width: 136px;
+    height: 177px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+}
+.cat-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+}
+.name{
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #253D4E;
+    text-align: center;
+}
+.productCount{
+    margin-top: -10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #B6B6B6;
+    text-align: center;
+}
+
+</style>
+
+
+
+
