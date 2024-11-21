@@ -4,34 +4,36 @@
     <RouterView />
 
     <div class="categories">
-      <category 
-        v-for="(categoryItem, index) in categories" 
-        :key="index" 
-        :image="categoryItem.image" 
-        :name="categoryItem.name" 
-        :productCount="categoryItem.productCount" 
-        :color="categoryItem.color">
-      </category> 
-    </div>
-
-    <div class="promotions">
-      <promotion 
-        v-for="(promotionItem, index) in promotions" 
-        :key="index" 
-        :title="promotionItem.title" 
-        :image="promotionItem.image" 
-        :color="promotionItem.color" 
-        :buttonColor="promotionItem.buttonColor" 
-        :btnName="promotionItem.btnName">
-      </promotion>
-    </div>
+    <category 
+      v-for="(categoryItem, index) in groupCategories" 
+      :key="index" 
+      :image="categoryItem.image" 
+      :name="categoryItem.name" 
+      :productCount="categoryItem.productCount" 
+      :color="categoryItem.color">
+    </category> 
   </div>
+
+  <div class="promotions">
+    <promotion 
+      v-for="(promotionItem, index) in groupPromotions" 
+      :key="index" 
+      :title="promotionItem.title" 
+      :image="promotionItem.image" 
+      :color="promotionItem.color" 
+      :buttonColor="promotionItem.buttonColor" 
+      :btnName="promotionItem.btnName">
+    </promotion>
+  </div>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
 import category from "./components/category.vue";
 import promotion from "./components/promotion.vue";
+import { mapState } from "pinia";
+import { useProductStore } from "./stores/product";
 
 export default {
   components: {
@@ -40,9 +42,23 @@ export default {
   },
   data() {
     return {
-      categories: [], 
-      promotions: [], 
+      categories: [],
+      promotions: [],
+      currentGroupName: 'Group B'
     };
+  },
+  computed: {
+    ...mapState(useProductStore, {
+    popularProducts: 'getPopularProducts', 
+    }),
+    groupCategories() {
+      const store = useProductStore();
+      return store.getCategoriesByGroup(this.currentGroupName); 
+    },
+    groupPromotions() {
+      const store = useProductStore();
+      return store.getProductsByGroup(this.currentGroupName); 
+    },
   },
   mounted() {
     this.fetchCategories();
@@ -53,7 +69,7 @@ export default {
       axios
         .get("http://localhost:3000/api/categories")
         .then((response) => {
-          this.categories = response.data; // Assign data to the correct property
+          this.categories = response.data; 
         })
         .catch((error) => {
           console.error("Error fetching categories:", error);
@@ -63,7 +79,7 @@ export default {
       axios
         .get("http://localhost:3000/api/promotions")
         .then((response) => {
-          this.promotions = response.data; // Assign data to the correct property
+          this.promotions = response.data; 
         })
         .catch((error) => {
           console.error("Error fetching promotions:", error);
@@ -72,6 +88,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .categories {
     display: flex; 
