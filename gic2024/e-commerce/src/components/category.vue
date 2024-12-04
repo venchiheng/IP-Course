@@ -38,8 +38,9 @@ export default {
     margin-top: -10px;
     font-size: 12px;
     font-weight: 400;
-    color: #B6B6B6;
+    color: rgb(173, 171, 171);
     text-align: center;
+    font-weight: bold;
 }
 
 </style>
