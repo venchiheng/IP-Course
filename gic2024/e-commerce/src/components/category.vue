@@ -1,9 +1,10 @@
 <template>
+    <RouterLink class="route" to="/categories/:categoryId">
     <div class="cat" :style="{backgroundColor: color}">
         <img :src="image" alt="Cat-Image" class="cat-img"/>
         <h4 class="name"> {{ name }}</h4>
         <p class="productCount"> {{ productCount }}</p>
-    </div>
+    </div></RouterLink>
 </template>
 
 <script>
@@ -13,7 +14,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.route{
+    text-decoration: none;
+}
 .cat {
     margin-top: 20px;
     width: 136px;

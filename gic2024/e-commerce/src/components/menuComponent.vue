@@ -3,8 +3,8 @@
         <nav>
             <ul>
                 <li class="feature"> {{ title }}</li>
-                <li>All</li>
-                <li class="options" v-for="(item, index) in nav" :key="index">{{ item }}</li>
+                <RouterLink class="route" to="/categories/:categoryId"><li>All</li></RouterLink>
+                <RouterLink class="route" to="/categories/:categoryId" v-for="(item, index) in nav" :key="index"><li class="options">{{ item }}</li></RouterLink>
               </ul>
         </nav>
     </header>
@@ -15,9 +15,9 @@
     props: ["title", "nav"],
   }
   </script>
-  <style >
+  <style scoped>
   .menuContainer {
-    max-width: 1650px;
+    width: 85%;
     margin-top: 20px;
     margin-left: -30px;
     display: flex;
@@ -27,6 +27,9 @@
   ul {
     list-style: none;
     display: flex;
+  }
+  .route{
+    text-decoration: none;
   }
   li {
     color: white;

@@ -1,24 +1,27 @@
 <template>
     <div class="productContainer">
         <span class="discount" v-if="promotionAsPercentage>0">-{{ promotionAsPercentage }}%</span>
-        <img class="img" :src="image" alt="product Image">
-        <div class="description">
-            <p class="group">{{ group }}</p>
-            <h3 class="title">{{ name }}</h3>
-            <p class="rating">&#11088 {{ rating }}</p>
-            <p class="size">{{ size }}</p>
-        </div>
-        
-        <div class="footer">
-            <span>${{ price }}</span>
-            <button v-if="!isInvisible" class="addBtn" @click="quantity">Add +</button>
-            <input class="input" v-else type="number" placeholder="1">
-        </div>
-
+        <RouterLink class="route" to="products/:productId"><img class="img" :src="image" alt="product Image"></RouterLink>
+        <RouterLink class="route"to="products/:productId">
+            <div class="description">
+                <p class="group">{{ group }}</p>
+                <h3 class="title">{{ name }}</h3>
+                <p class="rating">&#11088 {{ rating }}</p>
+                <p class="size">{{ size }}</p>
+            </div>
+        </RouterLink>
+        <RouterLink class="route" to="products/:productId">
+            <div class="footer">
+                <span>${{ price }}</span>
+                <button v-if="!isInvisible" class="addBtn" @click="quantity">Add +</button>
+                <input class="input" v-else type="number" placeholder="1">
+            </div>
+        </RouterLink>
     </div>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
     export default{
         name: "product",
         props: ["name","image","promotionAsPercentage","rating", "price","categoryId","size","instock","countSold","group"],
@@ -32,11 +35,13 @@
                 this.isInvisible=true;
             }
         }
-    }
-    
+    }   
 </script>
 
-<style>
+<style scoped>
+.route{
+    text-decoration: none;
+}
 .productContainer{
     padding: 20px;
     border-radius: 20px;

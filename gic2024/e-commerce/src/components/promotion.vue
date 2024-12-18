@@ -2,7 +2,7 @@
     <div class="promotionContainer" :style="{backgroundColor: color}">
         <div class="tt">
             <p class="promotitle">{{ title }}</p>
-            <buttonComponent @click="shopNow" :backgroundColor="buttonColor"></buttonComponent>
+            <RouterLink to="/products/:productId"><buttonComponent @click="shopNow" :backgroundColor="buttonColor"></buttonComponent></RouterLink>
         </div>
         <img :src="image" alt="image promotion" class="promo-img">
     </div>

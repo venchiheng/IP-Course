@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <h1>This is my first Vue.js project</h1>
+    <div class="container">
       <RouterView />
+      <showCase></showCase>
       <menuComponent :title="'Featured Categories'" :nav="productStore.groups ? productStore.groups : []"/>
       <div class="categories">
         <category 
@@ -44,15 +44,17 @@
   </template>
   
   <script>
- import category from "@/components/category.vue";
- import promotion from "@/components/promotion.vue";
- import product from "@/components/product.vue";
- import menuComponent from "@/components/menuComponent.vue";
- import { useProductStore } from "@/stores/product";
- import { onMounted } from "vue";
- import { mapState } from "pinia";
+  import showCase from "@/components/showCase.vue";
+  import category from "@/components/category.vue";
+  import promotion from "@/components/promotion.vue";
+  import product from "@/components/product.vue";
+  import menuComponent from "@/components/menuComponent.vue";
+  import { useProductStore } from "@/stores/product";
+  import { onMounted } from "vue";
+  import { mapState } from "pinia";
   export default {
     components: {
+      showCase,
       category,
       promotion, 
       product,
@@ -79,6 +81,11 @@
   };
   </script>
   <style scoped>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .categories {
       display: flex; 
       gap: 15px;
@@ -91,6 +98,7 @@
   }
   .products {
       display: flex;
+      justify-content: center;
       gap: 33px;
       font-family: 'Trebuchet MS', sans-serif;
       flex-wrap: wrap;
