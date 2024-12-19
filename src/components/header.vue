@@ -2,9 +2,9 @@
     <div class="container">
         <h1>Header</h1>
         <div>
-            <button @click="navigateToPage(1)">Page 1</button>
-            <button @click="navigateToPage(2)">Page 2</button>
-            <button @click="navigateToPage(3)">Page 3</button>
+            <RouterLink to="/page/1"><button>Page 1</button></RouterLink>
+            <RouterLink to="/page/2"><button>Page 2</button></RouterLink>
+            <RouterLink to="/page/3"><button>Page 3</button></RouterLink>
         </div>
     </div>
 </template>
@@ -12,20 +12,16 @@
 <script>
 export default{
     name:"Appheader",
-    methods:{
-        navigateToPage(pageNumber){
-            this.$router.push(`/page/${pageNumber}`);
-        }
-    }
 }
 </script>
 
 <style scoped>
 .container{
-    background-color: aquamarine;
+    background-color: violet;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 30px;
 }
 button{
     border: none;

@@ -12,8 +12,9 @@ export default{
 
 <style scoped>
 div{
-    background-color: aquamarine;
+    background-color: violet;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 </style>

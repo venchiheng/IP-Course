@@ -1,19 +1,12 @@
 <template>
     <div>
-        <span>Welcome to page {{ pageNumber }}</span>
+        <span>Welcome to page {{ $route.params.pageNumber }}</span>
     </div>
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
 export default {
     name: "page",
-    setup(){
-        const route = useRoute()
-        return {
-            pageNumber: route.params.pageNumber,
-        }
-    }
 }
 
 </script>
@@ -22,7 +15,7 @@ export default {
 div{
     width: 100%;
     height: 400px;
-    background-color: beige;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
